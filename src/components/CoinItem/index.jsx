@@ -4,18 +4,19 @@ import { AntDesign } from '@expo/vector-icons';
 
 import styles from './styles';
 
+const ONE_TRILLION = 1000000000000;
+const ONE_BILLION = 1000000000;
+const ONE_MILLION = 1000000;
+
 const normalizeMarketCap = (marketCap) => {
-  if (marketCap >= 1_000_000_000_000) {
-    return `${Math.floor(marketCap / 1_000_000_000_000)} T`;
+  if (marketCap >= ONE_TRILLION) {
+    return `${Math.floor(marketCap / ONE_TRILLION)} T`;
   }
-  if (marketCap >= 1_000_000_000) {
-    return `${Math.floor(marketCap / 1_000_000_000)} B`;
+  if (marketCap >= ONE_BILLION) {
+    return `${Math.floor(marketCap / ONE_BILLION)} B`;
   }
-  if (marketCap >= 1_000_000_000_000) {
-    return `${Math.floor(marketCap / 1_000_000)} M`;
-  }
-  if (marketCap >= 1_000_000_000_000) {
-    return `${Math.floor(marketCap / 1_000_000_000_000)} K`;
+  if (marketCap >= ONE_MILLION) {
+    return `${Math.floor(marketCap / ONE_MILLION)} M`;
   }
 
   return marketCap;

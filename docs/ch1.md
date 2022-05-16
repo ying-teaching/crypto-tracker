@@ -15,3 +15,7 @@ Use the sample data to display a list of coins. Put the coin item in a component
 ## 3 Coin Detailed Header
 
 Create a header component of the coin detailed screen.
+
+## 4 Coin Detailed Price
+
+Add coin price and change percentage.
