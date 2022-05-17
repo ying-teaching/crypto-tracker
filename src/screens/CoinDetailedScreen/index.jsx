@@ -1,5 +1,5 @@
-import { Dimensions, Text, View } from 'react-native';
-import React from 'react';
+import { Dimensions, Text, TextInput, View } from 'react-native';
+import React, { useState } from 'react';
 
 import { AntDesign } from '@expo/vector-icons';
 import {
@@ -27,6 +27,9 @@ const CoinDetailedScreen = () => {
     },
   } = Coin;
 
+  const [coinValue, setCoinValue] = useState('1');
+  const [usdValue, setUsdValue] = useState(current_price.usd.toString());
+
   const percentageColor =
     price_change_percentage_24h < 0 ? '#ea3943' : '#16c784';
 
@@ -35,10 +38,23 @@ const CoinDetailedScreen = () => {
   const screenWidth = Dimensions.get('window').width;
 
   const formatCurrency = (value) => {
+    'worklet';
     if (value === '') {
       return `$${current_price.usd.toFixed(2)}`;
     }
     return `$${parseFloat(value).toFixed(2)}`;
+  };
+
+  const changeCoinValue = (value) => {
+    setCoinValue(value);
+    const floatValue = parseFloat(value.replace(',', '.')) || 0;
+    setUsdValue((floatValue * current_price.usd).toString());
+  };
+
+  const changeUsdValue = (value) => {
+    setUsdValue(value);
+    const floatValue = parseFloat(value.replace(',', '.')) || 0;
+    setCoinValue((floatValue / current_price.usd).toString());
   };
 
   return (
@@ -88,6 +104,28 @@ const CoinDetailedScreen = () => {
             width={screenWidth}
           />
           <ChartDot style={{ backgroundColor: chartColor }} />
+        </View>
+        <View style={{ flexDirection: 'row' }}>
+          <View style={{ flexDirection: 'row', flex: 1 }}>
+            <Text style={{ color: 'white', alignSelf: 'center' }}>
+              {symbol.toUpperCase()}
+            </Text>
+            <TextInput
+              style={styles.input}
+              value={coinValue}
+              keyboardType="numeric"
+              onChangeText={changeCoinValue}
+            />
+          </View>
+          <View style={{ flexDirection: 'row', flex: 1 }}>
+            <Text style={{ color: 'white', alignSelf: 'center' }}>USD</Text>
+            <TextInput
+              style={styles.input}
+              value={usdValue}
+              keyboardType="numeric"
+              onChangeText={changeUsdValue}
+            />
+          </View>
         </View>
       </ChartPathProvider>
     </View>
