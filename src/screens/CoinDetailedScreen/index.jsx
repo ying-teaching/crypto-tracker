@@ -1,7 +1,13 @@
-import { Image, Text, View } from 'react-native';
+import { Dimensions, Text, View } from 'react-native';
 import React from 'react';
 
 import { AntDesign } from '@expo/vector-icons';
+import {
+  ChartDot,
+  ChartPath,
+  ChartPathProvider,
+  ChartYLabel,
+} from '@rainbow-me/animated-charts';
 
 import CoinDetailedHeader from './components/CoinDetailedHeader';
 
@@ -13,6 +19,7 @@ const CoinDetailedScreen = () => {
     image: { small },
     name,
     symbol,
+    prices,
     market_data: {
       market_cap_rank,
       current_price,
@@ -23,39 +30,66 @@ const CoinDetailedScreen = () => {
   const percentageColor =
     price_change_percentage_24h < 0 ? '#ea3943' : '#16c784';
 
+  const chartColor = current_price.usd > prices[0][1] ? '#16c784' : '#ea3943';
+
+  const screenWidth = Dimensions.get('window').width;
+
+  const formatCurrency = (value) => {
+    if (value === '') {
+      return `$${current_price.usd.toFixed(2)}`;
+    }
+    return `$${parseFloat(value).toFixed(2)}`;
+  };
+
   return (
     <View style={{ paddingHorizontal: 10 }}>
-      <CoinDetailedHeader
-        image={small}
-        symbol={symbol}
-        marketCapRank={market_cap_rank}
-      />
-      <View style={styles.priceContainer}>
+      <ChartPathProvider
+        data={{
+          points: prices.map(([x, y]) => ({ x, y })),
+          smoothingStrategy: 'bezier',
+        }}
+      >
+        <CoinDetailedHeader
+          image={small}
+          symbol={symbol}
+          marketCapRank={market_cap_rank}
+        />
+        <View style={styles.priceContainer}>
+          <View>
+            <Text style={styles.name}>{name}</Text>
+            <ChartYLabel format={formatCurrency} style={styles.currentPrice} />
+          </View>
+          <View
+            style={{
+              backgroundColor: percentageColor,
+              padding: 5,
+              borderRadius: 5,
+              paddingHorizontal: 3,
+              paddingVertical: 8,
+              flexDirection: 'row',
+            }}
+          >
+            <AntDesign
+              name={price_change_percentage_24h < 0 ? 'caretdown' : 'caretup'}
+              size={12}
+              color={'white'}
+              style={{ alignSelf: 'center', marginRight: 5 }}
+            />
+            <Text style={styles.priceChange}>
+              {price_change_percentage_24h.toFixed(2)}%
+            </Text>
+          </View>
+        </View>
         <View>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.currentPrice}>${current_price.usd}</Text>
-        </View>
-        <View
-          style={{
-            backgroundColor: percentageColor,
-            padding: 5,
-            borderRadius: 5,
-            paddingHorizontal: 3,
-            paddingVertical: 8,
-            flexDirection: 'row',
-          }}
-        >
-          <AntDesign
-            name={price_change_percentage_24h < 0 ? 'caretdown' : 'caretup'}
-            size={12}
-            color={'white'}
-            style={{ alignSelf: 'center', marginRight: 5 }}
+          <ChartPath
+            strokeWidth={2}
+            height={screenWidth / 2}
+            stroke={chartColor}
+            width={screenWidth}
           />
-          <Text style={styles.priceChange}>
-            {price_change_percentage_24h.toFixed(2)}%
-          </Text>
+          <ChartDot style={{ backgroundColor: chartColor }} />
         </View>
-      </View>
+      </ChartPathProvider>
     </View>
   );
 };
