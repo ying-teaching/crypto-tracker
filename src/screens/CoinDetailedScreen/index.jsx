@@ -5,7 +5,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { AntDesign } from '@expo/vector-icons';
 import {
