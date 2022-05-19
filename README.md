@@ -36,7 +36,7 @@ Convert between Coin price and USD.
 
 ## 2 Navigation and Data
 
-## 2.1 Navigation
+### 2.1 Navigation
 
 Follow the [React Native Navigation doc](https://reactnavigation.org/docs/getting-started/) to install packages for Expo managed project.
 
@@ -45,3 +45,7 @@ Follow the [React Native Navigation doc](https://reactnavigation.org/docs/gettin
 - `yarn add @react-navigation/native-stack`
 
 Then add navigation code to home and coin detailed header.
+
+### 2.2 Fetch Data
+
+Install Axios `yarn add axios`. The the [Query API](https://www.coingecko.com/en/api/documentation) to get the query string.

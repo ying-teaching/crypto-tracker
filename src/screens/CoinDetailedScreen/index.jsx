@@ -1,5 +1,11 @@
-import { Dimensions, Text, TextInput, View } from 'react-native';
-import React, { useState } from 'react';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+import React, { useState, useEffect } from 'react';
 
 import { AntDesign } from '@expo/vector-icons';
 import {
@@ -11,38 +17,56 @@ import {
 
 import { useRoute } from '@react-navigation/native';
 
+import {
+  getDetailedCoinData,
+  getCoinMarketChart,
+} from '../../services/requests';
+
 import CoinDetailedHeader from './components/CoinDetailedHeader';
 
-import Coin from '../../../assets/data/crypto.json';
 import styles from './styles';
 
 const CoinDetailedScreen = () => {
-  const {
-    image: { small },
-    name,
-    symbol,
-    prices,
-    market_data: {
-      market_cap_rank,
-      current_price,
-      price_change_percentage_24h,
-    },
-  } = Coin;
-
-  const [coinValue, setCoinValue] = useState('1');
-  const [usdValue, setUsdValue] = useState(current_price.usd.toString());
+  const [coin, setCoin] = useState(null);
+  const [coinMarketData, setCoinMarketData] = useState(null);
 
   const route = useRoute();
   const {
     params: { coinId },
   } = route;
 
-  const percentageColor =
-    price_change_percentage_24h < 0 ? '#ea3943' : '#16c784';
+  const [loading, setLoading] = useState(false);
+  const [coinValue, setCoinValue] = useState('1');
+  const [usdValue, setUsdValue] = useState('');
 
-  const chartColor = current_price.usd > prices[0][1] ? '#16c784' : '#ea3943';
+  const fetchCoinData = async () => {
+    setLoading(true);
+    const fetchedCoinData = await getDetailedCoinData(coinId);
+    const fetchedCoinMarketData = await getCoinMarketChart(coinId);
+    setCoin(fetchedCoinData);
+    setCoinMarketData(fetchedCoinMarketData);
+    setUsdValue(fetchedCoinData.market_data.current_price.usd.toString());
+    setLoading(false);
+  };
 
-  const screenWidth = Dimensions.get('window').width;
+  useEffect(() => {
+    fetchCoinData();
+  }, []);
+
+  if (loading || !coin || !coinMarketData) {
+    return <ActivityIndicator size="large" />;
+  }
+
+  const {
+    image: { small },
+    name,
+    symbol,
+    market_data: {
+      market_cap_rank,
+      current_price,
+      price_change_percentage_24h,
+    },
+  } = coin;
 
   const formatCurrency = (value) => {
     'worklet';
@@ -63,6 +87,15 @@ const CoinDetailedScreen = () => {
     const floatValue = parseFloat(value.replace(',', '.')) || 0;
     setCoinValue((floatValue / current_price.usd).toString());
   };
+
+  const { prices } = coinMarketData;
+
+  const percentageColor =
+    price_change_percentage_24h < 0 ? '#ea3943' : '#16c784';
+
+  const chartColor = current_price.usd > prices[0][1] ? '#16c784' : '#ea3943';
+
+  const screenWidth = Dimensions.get('window').width;
 
   return (
     <View style={{ paddingHorizontal: 10 }}>
