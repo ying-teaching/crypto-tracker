@@ -2,7 +2,7 @@
 
 This demo app is based on the [Youtube Crypto Price Tracker Tutorials](https://www.youtube.com/playlist?list=PLY3ncAV1dSVDcxSwME2axkJmu5lcJqW0t).
 
-## Chapter 1
+## Chapter 1 Coin Items
 
 Run `expo init CyptoPriceTracker -t blan` to initialize the project.
 
@@ -34,4 +34,14 @@ Run `expo start --clear` to rebuild.
 
 Convert between Coin price and USD.
 
-## 2
+## 2 Navigation and Data
+
+## 2.1 Navigation
+
+Follow the [React Native Navigation doc](https://reactnavigation.org/docs/getting-started/) to install packages for Expo managed project.
+
+- `yarn add @react-navigation/native`
+- `expo install react-native-screens react-native-safe-area-context`
+- `yarn add @react-navigation/native-stack`
+
+Then add navigation code to home and coin detailed header.
