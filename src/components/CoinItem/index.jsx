@@ -5,9 +5,9 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-const ONE_TRILLION = 1000000000000;
-const ONE_BILLION = 1000000000;
-const ONE_MILLION = 1000000;
+const ONE_TRILLION = 1_000_000_000_000;
+const ONE_BILLION = 1_000_000_000;
+const ONE_MILLION = 1_000_000;
 
 const normalizeMarketCap = (marketCap) => {
   if (marketCap >= ONE_TRILLION) {
