@@ -49,3 +49,7 @@ Then add navigation code to home and coin detailed header.
 ### 2.2 Fetch Data
 
 Install Axios `yarn add axios`. The the [Query API](https://www.coingecko.com/en/api/documentation) to get the query string.
+
+### 2.3 Bottom Tabs Navigator
+
+Follow the [bottom tabs navigator doc](https://reactnavigation.org/docs/bottom-tab-navigator/) to run `yarn add @react-navigation/bottom-tabs`.
