@@ -9,14 +9,11 @@ const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName={'Root'}
+      initialRouteName="Root"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name={'Root'} component={BottomTabNavigator} />
-      <Stack.Screen
-        name={'CoinDetailedScreen'}
-        component={CoinDetailedScreen}
-      />
+      <Stack.Screen name="CoinDetailedScreen" component={CoinDetailedScreen} />
     </Stack.Navigator>
   );
 };

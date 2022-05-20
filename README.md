@@ -53,3 +53,7 @@ Install Axios `yarn add axios`. The the [Query API](https://www.coingecko.com/en
 ### 2.3 Bottom Tabs Navigator
 
 Follow the [bottom tabs navigator doc](https://reactnavigation.org/docs/bottom-tab-navigator/) to run `yarn add @react-navigation/bottom-tabs`.
+
+### 2.4 Fetch Paged Data
+
+Use the `/coins/markets/` api to get list of coins price, market cap, volume and market related data one page at a time.
