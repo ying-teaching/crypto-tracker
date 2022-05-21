@@ -57,3 +57,7 @@ Follow the [bottom tabs navigator doc](https://reactnavigation.org/docs/bottom-t
 ### 2.4 Fetch Paged Data
 
 Use the `/coins/markets/` api to get list of coins price, market cap, volume and market related data one page at a time.
+
+### 2.5 Watchlist
+
+Follow [Expo AsyncStorage doc](https://docs.expo.dev/versions/latest/sdk/async-storage/) to install the package.
