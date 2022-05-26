@@ -133,7 +133,7 @@ const CoinDetailedScreen = () => {
               style={{ alignSelf: 'center', marginRight: 5 }}
             />
             <Text style={styles.priceChange}>
-              {price_change_percentage_24h.toFixed(2)}%
+              {price_change_percentage_24h?.toFixed(2)}%
             </Text>
           </View>
         </View>
