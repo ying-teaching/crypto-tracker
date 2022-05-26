@@ -6,8 +6,15 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import PortfolioAssetsItem from '../PortfolioAssetsItem';
 
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { allPortfolioAssets } from '../../../../atoms/PortfolioAssets';
+
 const PortfolioAssetList = () => {
   const navigation = useNavigation();
+
+  const assets = useRecoilValue(allPortfolioAssets);
+  console.log(assets);
+
   return (
     <View>
       <FlatList

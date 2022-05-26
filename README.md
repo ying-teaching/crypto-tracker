@@ -71,3 +71,9 @@ Follow [Expo AsyncStorage doc](https://docs.expo.dev/versions/latest/sdk/async-s
 ### 3.3 Searchable input
 
 Use a package: `yarn add react-native-searchable-dropdown`.
+
+### 3.4 Recoil
+
+`yarn add recoil`
+
+### 3.5 Fetch all coins

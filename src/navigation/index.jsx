@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { Text } from 'react-native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CoinDetailedScreen from '../screens/CoinDetailedScreen';
@@ -9,32 +10,34 @@ const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   return (
-    <Stack.Navigator initialRouteName="Root">
-      <Stack.Screen
-        name={'Root'}
-        component={BottomTabNavigator}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="CoinDetailedScreen"
-        component={CoinDetailedScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name={'AddNewAssetScreen'}
-        component={AddNewAssetScreen}
-        options={{
-          title: 'Add New Asset',
-          headerStyle: {
-            backgroundColor: '#121212',
-          },
-          headerTintColor: 'white',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
-      />
-    </Stack.Navigator>
+    <Suspense fallback={<Text style={{ color: 'white' }}>Loading...</Text>}>
+      <Stack.Navigator initialRouteName="Root">
+        <Stack.Screen
+          name={'Root'}
+          component={BottomTabNavigator}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CoinDetailedScreen"
+          component={CoinDetailedScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name={'AddNewAssetScreen'}
+          component={AddNewAssetScreen}
+          options={{
+            title: 'Add New Asset',
+            headerStyle: {
+              backgroundColor: '#121212',
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+      </Stack.Navigator>
+    </Suspense>
   );
 };
 
