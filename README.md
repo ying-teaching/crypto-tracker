@@ -61,3 +61,7 @@ Use the `/coins/markets/` api to get list of coins price, market cap, volume and
 ### 2.5 Watchlist
 
 Follow [Expo AsyncStorage doc](https://docs.expo.dev/versions/latest/sdk/async-storage/) to install the package.
+
+## 3 Assets Management
+
+## 3.1 Add Portfolio screen
