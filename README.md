@@ -64,6 +64,10 @@ Follow [Expo AsyncStorage doc](https://docs.expo.dev/versions/latest/sdk/async-s
 
 ## 3 Assets Management
 
-## 3.1 Add Portfolio screen
+### 3.1 Portfolio screen
 
-## 3.2 Add Assets Item
+### 3.2 Assets Item
+
+### 3.3 Searchable input
+
+Use a package: `yarn add react-native-searchable-dropdown`.
