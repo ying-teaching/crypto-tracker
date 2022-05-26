@@ -3,13 +3,14 @@ import React from 'react';
 import { AntDesign } from '@expo/vector-icons';
 
 import styles from './styles';
+import PortfolioAssetsItem from '../PortfolioAssetsItem';
 
 const PortfolioAssetList = () => {
   return (
     <View>
       <FlatList
-        data={[]}
-        renderItem={() => <Text>Item</Text>}
+        data={[{ id: 'bitcoin' }, { id: 'ethereum' }]}
+        renderItem={(item) => <PortfolioAssetsItem assetItem={item} />}
         ListHeaderComponent={
           <>
             <View style={styles.balanceContainer}>

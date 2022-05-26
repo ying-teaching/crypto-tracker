@@ -65,3 +65,5 @@ Follow [Expo AsyncStorage doc](https://docs.expo.dev/versions/latest/sdk/async-s
 ## 3 Assets Management
 
 ## 3.1 Add Portfolio screen
+
+## 3.2 Add Assets Item
