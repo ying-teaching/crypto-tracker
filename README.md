@@ -77,3 +77,5 @@ Use a package: `yarn add react-native-searchable-dropdown`.
 `yarn add recoil`
 
 ### 3.5 Fetch all coins
+
+### 3.6 Portfolio screen

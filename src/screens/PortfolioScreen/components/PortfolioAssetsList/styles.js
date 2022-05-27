@@ -13,12 +13,10 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   valueChange: {
-    color: '#16c784',
-    fontWeight: '600',
+    fontWeight: '700',
     fontSize: 16,
   },
   percentageChange: {
-    color: 'white',
     fontWeight: '500',
     fontSize: 17,
   },
@@ -32,7 +30,6 @@ const styles = StyleSheet.create({
   },
   priceChangePercentageContainer: {
     flexDirection: 'row',
-    backgroundColor: '#16c784',
     paddingHorizontal: 3,
     paddingVertical: 8,
     borderRadius: 5,

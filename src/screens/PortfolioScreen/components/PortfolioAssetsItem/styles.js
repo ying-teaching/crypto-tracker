@@ -5,10 +5,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+    alignSelf: 'flex-end',
   },
   ticker: {
     color: 'grey',
-    fontWeight: '600',
+    fontWeight: '700',
   },
   coinContainer: {
     flexDirection: 'row',

@@ -7,11 +7,16 @@ export default allPortfolioBoughtAssets = selector({
   key: 'allPortfolioBoughtAssets',
   get: async () => {
     const jsonValue = await AsyncStorage.getItem('@portfolio_coins');
-    return jsonValue != null ? JSON.parse(jsonValue) : [];
+    return jsonValue !== null ? JSON.parse(jsonValue) : [];
   },
 });
 
-export const allPortfolioBoughtAssetsFromApi = {
+export const allPortfolioBoughtAssetsInStorage = atom({
+  key: 'allPortfolioBoughtAssetsInStorage',
+  default: allPortfolioBoughtAssets,
+});
+
+export const allPortfolioBoughtAssetsFromApi = selector({
   key: 'allPortfolioBoughtAssetsFromApi',
   get: async ({ get }) => {
     const boughtPortfolioAssets = get(allPortfolioBoughtAssetsInStorage);
@@ -23,11 +28,11 @@ export const allPortfolioBoughtAssetsFromApi = {
     const boughtAssets = boughtPortfolioAssets.map((boughtAsset) => {
       const portfolioAsset = portfolioAssetsMarketData.filter(
         (item) => boughtAsset.id === item.id
-      );
+      )[0];
       return {
         ...boughtAsset,
         currentPrice: portfolioAsset.current_price,
-        priceChangePercentage: portfolioAsset.price_change_percentage_24,
+        priceChangePercentage: portfolioAsset.price_change_percentage_24h,
       };
     });
 
@@ -37,14 +42,9 @@ export const allPortfolioBoughtAssetsFromApi = {
         item2.quantityBought * item2.currentPrice
     );
   },
-};
+});
 
 export const allPortfolioAssets = atom({
   key: 'allPortfolioAssets',
   default: allPortfolioBoughtAssetsFromApi,
-});
-
-export const allPortfolioBoughtAssetsInStorage = atom({
-  key: 'allPortfolioBoughtAssetsInStorage',
-  default: allPortfolioBoughtAssets,
 });
